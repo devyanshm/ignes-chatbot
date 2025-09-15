@@ -22,8 +22,8 @@ def analyze_file(uploaded_file):
 def call_gemini(prompt_text, temperature=0.3):
     api_key = os.environ.get("GOOGLE_GENAI_API_KEY")
     if not api_key:
-        st.error("Set the GOOGLE_GENAI_API_KEY environment variable.")
-        st.stop()
+        api_key = "AIzaSyBvUlevb7sqzlO6iaiEHqnCPA3aoO5IP2M"  # fallback to hardcoded key
+        st.warning("Using hardcoded API key. For security, set the GOOGLE_GENAI_API_KEY environment variable.")
     client = genai.Client(api_key=api_key)
     cfg = types.GenerateContentConfig(temperature=temperature)
     contents = [types.Content(role="user",
